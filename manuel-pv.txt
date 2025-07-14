@@ -1,0 +1,6 @@
+Module PV modèle Alpha 350W :
+- Puissance maximale : 350 W
+- Tension à vide (Voc) : 45,6 V
+- Courant de court-circuit (Isc) : 9,8 A
+- Tension au point MPP : 37,2 V
+- Tolérance : ±3 %
