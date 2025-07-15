@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Assistant IA Vocal</title>
+</head>
+<body>
+    <h1>Assistant IA Vocal</h1>
+    <button onclick="startListening()">🎤 Parler</button>
+    <p id="question"></p>
+    <p><strong>Réponse :</strong> <span id="answer"></span></p>
+
+    <script>
+        function startListening() {
+            const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'fr-FR';
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                const question = event.results[0][0].transcript;
+                document.getElementById("question").innerText = question;
+                askQuestion(question);
+            };
+        }
+
+        function askQuestion(question) {
+            fetch("http://192.168.1.99:5000/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const answer = data.answer;
+                document.getElementById("answer").innerText = answer;
+                const utterance = new SpeechSynthesisUtterance(answer);
+                utterance.lang = "fr-FR";
+                speechSynthesis.speak(utterance);
+            });
+        }
+    </script>
+</body>
+</html>
