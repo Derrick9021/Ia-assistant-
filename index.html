@@ -8,7 +8,7 @@
     <h1>Assistant IA Vocal</h1>
     <button onclick="startListening()">🎤 Parler</button>
     <p id="question"></p>
-    <p><strong>Réponse :</strong> <span id="answer"></span></p>
+    <p><strong>Réponse :</strong> <span id="reponse"></span></p>
 
     <script>
         function startListening() {
@@ -24,16 +24,16 @@
         }
 
         function askQuestion(question) {
-            fetch("http://192.168.1.99:5000/ask", {
+            fetch("http://localhost:5000/ask", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question })
+                body: JSON.stringify({question})
             })
             .then(response => response.json())
             .then(data => {
-                const answer = data.answer;
-                document.getElementById("answer").innerText = answer;
-                const utterance = new SpeechSynthesisUtterance(answer);
+                const reponse = data.reponse;
+                document.getElementById("reponse").innerText = reponse;
+                const utterance = new SpeechSynthesisUtterance(reponse);
                 utterance.lang = "fr-FR";
                 speechSynthesis.speak(utterance);
             });
