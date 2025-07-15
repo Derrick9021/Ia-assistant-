@@ -24,18 +24,29 @@
         }
 
         function askQuestion(question) {
-            fetch(" https://42cfa1370088.ngrok-free.app/ask", {
+            fetch("https://42cfa1370088.ngrok-free.app/ask", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({question})
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ question: question })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erreur réseau");
+                }
+                return response.json();
+            })
             .then(data => {
                 const reponse = data.reponse;
                 document.getElementById("reponse").innerText = reponse;
                 const utterance = new SpeechSynthesisUtterance(reponse);
                 utterance.lang = "fr-FR";
                 speechSynthesis.speak(utterance);
+            })
+            .catch(error => {
+                document.getElementById("reponse").innerText = "Erreur : " + error.message;
+                console.error("Erreur lors de l'appel :", error);
             });
         }
     </script>
