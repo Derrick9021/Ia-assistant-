@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Assistant IA Vocal</title>
-            </head>
-<body>tListening() {
-const reco
+</head>
+<body>
     <h1>Assistant IA Vocal</h1>
     <button onclick="startListening()">🎤 Parler</button>
     <p id="question"></p>
     <strong>Réponse :</strong> <span id="reponse"></span></p>
 
     <script>
-        function stargnition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+        function startListening() {
+            const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = 'fr-FR';
             recognition.start();
 
