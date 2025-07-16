@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Assistant IA Vocal</title>
-</head>
-<body>
+            </head>
+<body>tListening() {
+const reco
     <h1>Assistant IA Vocal</h1>
     <button onclick="startListening()">🎤 Parler</button>
     <p id="question"></p>
     <strong>Réponse :</strong> <span id="reponse"></span></p>
 
     <script>
-        function startListening() {
-            const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+        function stargnition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = 'fr-FR';
             recognition.start();
 
@@ -24,7 +24,7 @@
         }
 
         function askQuestion(question) {
-            fetch("https://64eb4f1a9f26.ngrok-free.app/ask", {
+            fetch("https://b92aff50e73a.ngrok-free.app/ask", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
